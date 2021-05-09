@@ -1,0 +1,49 @@
+"""
+*내가 쓴 코드 (테스트 케이스 3개 통과 못함)
+ 현재 작업이 바로 가능한 task 중 작업시간이 짧은 순대로 배정해야 총 작업 평균시간을 줄일 수 있음
+"""
+import heapq
+
+def solution(jobs):
+    answer, now = 0,0
+    h = []
+
+    for i in range(len(jobs)):
+        for j in jobs:
+            if j[0] <= now: #j[0]이 입력시간, now가 현재 시간이므로 j[0]이 now보다 작으면 모두 현재 작업이 가능한 task들
+                heapq.heappush(heap, [j[1],j[0]]) #heap에다가 j[1](작업시간)을 기준으로 넣음
+        if len(heap) > 0:
+            current = heapq.heappop(heap) #작업시간이 최소값인 작업 추출
+            now += current[0] #현재시간 = 과거시간 + 현재작업의 작업시간
+            answer += (now-current[1]) #총 걸린 시간 = 현재시간 - 입력시간
+        else: #만약 현재 작업 가능한 업무가 없을 경우 현재 시간을 1 올림
+            now += 1
+
+    return int(answer/len(jobs))
+ 
+ """
+*다른사람 코드 참고 해서 수정한 코드
+for문 -> while문
+start 추가
+"""
+import heapq
+
+def solution(jobs):
+    answer, now, i = 0,0,0
+    heap = []
+    start = -1
+
+    while i < len(jobs):
+        for j in jobs:
+            if start < j[0] <= now:
+                heapq.heappush(heap, [j[1],j[0]])
+        if len(heap) > 0:
+            current = heapq.heappop(heap)
+            start = now
+            now += current[0]
+            answer += (now-current[1])
+            i+=1
+        else:
+            now += 1
+
+    return int(answer/len(jobs))
