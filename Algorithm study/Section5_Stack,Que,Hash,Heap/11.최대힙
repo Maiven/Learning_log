@@ -1,0 +1,19 @@
+#최대힙
+"""
+heappush는 최소힙으로 작동을 함.
+최대힙으로 만들려면 입력 숫자의 부호를 -로 바꾸면 됨 (heappush(a,-n))
+pop해서 출력할 때 다시 부호를 바꾸면 됨 (-hq.heappop(a))
+"""
+import heapq as heapq
+a=[]
+while True:
+    n=int(input())
+    if n==-1:
+        break
+    if n==0:
+        if len(a)==0:
+            print(-1)
+        else:
+            print(-hq.heappop(a)) #최상위 부모 노드값 pop하는 함수
+    else: #0이 아니면 push
+        hq.heappush(a,-n)
