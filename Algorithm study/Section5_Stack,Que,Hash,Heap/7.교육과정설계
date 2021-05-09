@@ -1,0 +1,37 @@
+#교육과정설계
+from collections import deque
+req=input()
+N=int(input())
+for i in range(N):
+    p=input()
+    dq=deque(req)
+    for c in p:
+        if c in dq:
+            if c != dq[0]:
+                print("#%d NO" %(i+1)) #필수 수업 순서가 맞지 않은 경우
+                break
+            dq.popleft()
+    else:
+        if len(dq) == 0:
+            print("#%d YES" %(i+1))
+        else:
+            print("#%d NO" %(i+1)) #필수 수업이 다 안들어간 경우
+"""
+#강의코드
+from collections import deque
+need=input()
+n=int(input())
+for i in range(n):
+    plan=input()
+    dq=deque(need)
+    for x in plan:
+        if x in dq:
+            if x!=dq.popleft():
+                print("#%d NO" %(i+1))
+                break
+    else:
+        if len(dq)==0:
+            print("#%d YES" %(i+1))
+        else:
+            print("#%d NO" %(i+1))
+"""
