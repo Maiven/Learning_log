@@ -1,0 +1,35 @@
+#후위표기식 만들기
+"""
+Logic
+1. 적혀있는 식을 순서대로 봄(for문)
+2. 정수를 만나면 일단 출력함 ans에 누적함
+3. +나 -를 만나면 여는 괄호를 만나기 전까지 stack에 있는 모든 연산자를 ans에 누적하고 pop시킴(우선순위가 가장 낮으므로) 그리고 본인을 stack에 넣음
+4. *나 /를 만나면 stack에 *나 /가 있을 경우 ans에 누적하고 pop시킴(연산 우선순위가 동일하므로, 먼저 들어가 있는 * 또는 /가 먼저 연산 되어야 함)하고 본인을 stack에 넣음
+5. 여는 괄호는 무조건 stack에 append
+6. 닫는 괄호가 나오면 여는괄호가 나올때 까지 stack에 있는 모든 연산자 ans에 누적하고 pop시킴
+7. for문이 끝났는데도 stack이 비지 않은 경우 남은 stack의 연산자들은 순서대로 ans에 누적
+"""
+mid=input()
+stack=[]
+ans=''
+for x in mid:
+    if x.isdecimal(): #10진수 숫자인지 확인하는 함수
+        ans+=x
+    else:
+        if x=='(':
+            stack.append(x)
+        elif x=='*' or x=='/':
+            while stack and (stack[-1] =='*' or stack[-1]=='/'):
+                ans+=stack.pop()
+            stack.append(x)
+        elif x=='+' or x=='-':
+            while stack and stack[-1] !='(':
+                ans+=stack.pop()
+            stack.append(x)
+        elif x==')':
+            while stack and stack[-1] !='(':
+                ans+=stack.pop()
+            stack.pop()
+while stack:
+    ans+=stack.pop()
+print(ans)
