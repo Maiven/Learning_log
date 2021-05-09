@@ -1,0 +1,16 @@
+#힙큐문제인데 힙큐를 안쓰고 풀었다...
+def solution(operations):
+    h = []
+    for a in operations:
+        if a[0] == 'I':
+            a=a.split()
+            h.append(int(a[1]))
+        elif len(h) > 0:
+            if a == 'D 1':
+                h.remove(max(h))
+            elif a == 'D -1':
+                h.remove(min(h))
+    if len(h) == 0:
+        return [0,0]
+    else:
+        return [max(h),min(h)]
