@@ -1,0 +1,19 @@
+#후위식 연산
+back=input()
+stack=[]
+for x in back:
+    if x.isdecimal():
+        stack.append(int(x))
+    else:
+        right=stack.pop()
+        left=stack.pop()
+        if x=='+':
+            result=left+right #stack.append(left+right)
+        elif x=='-':
+            result=left-right
+        elif x=='/':
+            result=left/right
+        elif x=='*':
+            result=left*right
+        stack.append(result)
+print(stack.pop()) #print(stack[0])
