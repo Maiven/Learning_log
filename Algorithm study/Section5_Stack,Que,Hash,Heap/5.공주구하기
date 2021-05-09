@@ -1,0 +1,17 @@
+"""
+Que: First in first out 뒤 쪽에서 넣고 앞쪽에서 꺼냄 (들어가는 순서대로 나옴)
+뒤쪽에서 넣는 것은 append, 뒤쪽에서 꺼내는 것은 pop(list와 동일)
+앞쪽에서 넣는 것은 appendleft, 앞쪽에서 꺼내는 것은 popleft
+"""
+from collections import deque
+N,K=map(int,input().split())
+dq=list(range(1,N+1))
+dq=deque(dq)
+while dq:
+    for _ in range(K-1):
+        cur=dq.popleft()
+        dq.append(cur)
+    dq.popleft()
+    if len(dq)==1:
+        print(dq[0])
+        dq.popleft() #또는 break
