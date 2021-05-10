@@ -1,0 +1,14 @@
+#1.재귀함수란(이진수출력)
+def binary(n):
+    if (n<1):
+        return '0'
+    elif (n==1):
+        return '1'
+    if (n%2==0):
+        return trans(int(n/2)) + '0'
+    elif (n%2==1):
+        return trans(int(n/2)) + '1'
+
+N = int(input())
+answer = trans(N)
+print(answer)
