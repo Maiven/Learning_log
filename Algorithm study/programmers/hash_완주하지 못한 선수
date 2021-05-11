@@ -1,0 +1,8 @@
+def solution(p, c):
+    answer = list(set(p)-set(c))
+    if answer:
+        return answer[0]
+    else:
+        from collections import Counter
+        answer = list((Counter(p)-Counter(c)).keys())
+        return answer[0]
