@@ -1,0 +1,14 @@
+import math
+from collections import Counter
+def solution(progresses, speeds):
+    answer = []
+    dt = []
+    for i in range(len(speeds)):
+        fin = math.ceil((100-progresses[i])/speeds[i])
+        dt.append(fin)
+    for i in range(len(dt)-1):
+        if dt[i] > dt[i+1]:
+            dt[i+1] = dt[i]
+    return list(Counter(dt).values())
+    
+##효율성 검사있으면 백퍼 떨어질 듯. dq써서 다시 풀어보기.
