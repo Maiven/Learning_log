@@ -1,2 +1,2 @@
-# Hyunie_Programming
-Learning materials
+# Learning log
+
